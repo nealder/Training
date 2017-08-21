@@ -1,0 +1,54 @@
+﻿<Window x:Class="Hetfo.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hetfo"
+        xmlns:ViewModel="clr-namespace:Hetfo.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="525">
+
+    <Window.DataContext>
+        <ViewModel:MainViewModel></ViewModel:MainViewModel>
+    </Window.DataContext>
+
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Height="238" Margin="24,121,0,0" VerticalAlignment="Top" Width="460">
+
+
+        </ScrollViewer>
+        <Button Content="Open ..." HorizontalAlignment="Left" Margin="384,19,0,0" VerticalAlignment="Top" Width="75" Click="Open_xml_click_caller"/>
+        <Label Content="Select a(n) XML file." HorizontalAlignment="Right" Height="29" Margin="0,16,138,0" VerticalAlignment="Top" Width="212"/>
+        <ListView x:Name="MyList" HorizontalAlignment="Left" Height="238" Margin="24,121,0,0" VerticalAlignment="Top" Width="435" 
+                  Grid.Row="1" ItemsSource="{Binding SourceCollection}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Full Name" Width="100" DisplayMemberBinding="{Binding Fullname}"/>
+                    <GridViewColumn Header="Age" Width="100" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="Date of Birth" Width="100" DisplayMemberBinding="{Binding FormattedBirthDate}"/>
+                    <GridViewColumn Header="Adult" Width="100" DisplayMemberBinding="{Binding Adult}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock x:Name="FullNameTxtBlock" HorizontalAlignment="Left" Margin="25,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104">
+            <Run Text="Full Name"/>
+        </TextBlock>
+        <TextBlock x:Name="AgeTxtBlock" HorizontalAlignment="Left" Margin="125,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104">
+            <Run Text="Age"/>
+        </TextBlock>
+        <TextBlock x:Name="BirthDayTxtBlock" HorizontalAlignment="Left" Margin="329,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104">
+            <Run Text="Adult"/>
+        </TextBlock>
+        <TextBlock x:Name="AdultTxtBlock" HorizontalAlignment="Left" Margin="225,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104">
+            <Run Text="Day of Birth"/>
+        </TextBlock>
+        <TextBox Text="{Binding FilterTextFullName}" HorizontalAlignment="Left" Height="21" Margin="25,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"
+                 x:Name="_FilterTextFullname"/>
+        <TextBox Text="{Binding FilterTextAge}" HorizontalAlignment="Left" Height="21" Margin="125,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"
+                 x:Name="_FilterTextAge"/>
+        <TextBox Text="{Binding FilterTextBirthDate}" HorizontalAlignment="Left" Height="21" Margin="225,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"
+                 x:Name="_FilterTextBirthDate"/>
+        <TextBox Text="{Binding FilterTextAdult}" HorizontalAlignment="Left" Height="21" Margin="329,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"
+                 x:Name="_FilterTextAdult"/>
+    </Grid>
+</Window>
